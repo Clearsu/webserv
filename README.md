@@ -22,11 +22,15 @@
 - Created error pages.
 ```
 
-## 📸 Screenshots
+### 📊 Server Benchmark Comparison (vs. Nginx, measured over 3 runs)
 
-| GET | POST | DELETE | PUT | Siege Test |
-| --- | --- | --- | --- | --- |
-| <img width="150" height="300" alt="GET" src="https://avatars.githubusercontent.com/u/85754295?v=4"> | <img width="150" height="300" alt="POST" src="https://avatars.githubusercontent.com/u/67998022?v=4"> | <img width="150" height="300" alt="DELETE" src="https://avatars.githubusercontent.com/u/76660692?v=4"> | <img width="150" height="300" alt="PUT" src="https://avatars.githubusercontent.com/u/83046766?v=4"> | <img width="150" height="300" alt="Siege Test" src="tests/html/asset/git/sige-test.png"> |
+| Response Size | TPS (webserv) | TPS (nginx) | Relative TPS (%) | Latency (webserv, s) | Latency (Nginx, s) | Failure Rate (webserv, %) | Failure Rate (nginx, %) | Longest Txn (webserv, s) | Longest Txn (Nginx, s) |
+|---------------|-------------------|-------------|-------------------|----------------------------|----------------------|-------------------------------|---------------------------|-------------------------------|--------------------------|
+| **0B**        | 13,756            | 25,828      | 53.3%             | 0.01                       | 0.01                 | 0.0104%                       | 0.0839%                   | 0.57                          | 0.06                     |
+| **612B**      | 10,386            | 23,214      | 44.7%             | 0.02                       | 0.01                 | 0.0022%                       | 0.0821%                   | 0.75                          | 0.16                     |
+| **974B**      | 9,660             | 23,270      | 41.5%             | 0.02                       | 0.01                 | 0.0027%                       | 0.0846%                   | 0.81                          | 0.16                     |
+| **2000B**     | 6,530             | 23,402      | 27.9%             | 0.03                       | 0.01                 | 0.0075%                       | 0.0852%                   | 0.84                          | 0.14                     |
+
 
 ## 🛠 Development Environment
 
