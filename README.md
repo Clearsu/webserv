@@ -6,13 +6,13 @@
 
 ## Introduction
 
-- A single-threaded asynchronous web server implemented in C++ 98.
+- A single-threaded asynchronous web server implemented in C++ 98, mimicking Nginx's behavior.
 
 ## Summary
 
 ```
 - Developed GET, POST, DELETE, PUT, HEAD methods compliant with the HTTP 1.1 protocol.
-- Built with C++98
+- Can be configured with a configuration file like Nginx.
 - Made server-side advanced tasks easier with CGI functionality.
 - Handles client requests asynchronously.
 - Supports the default page (index.html) and error pages.
@@ -22,7 +22,7 @@
 ## How to Run
 ```
 make
-./webserv
+./webserv (option: [path_to_conf_file])
 ```
 
 ## Request & Response Demo
