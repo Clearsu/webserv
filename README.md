@@ -13,6 +13,7 @@
 ```
 - Developed GET, POST, DELETE, PUT, HEAD methods compliant with the HTTP 1.1 protocol.
 - Can be configured with a configuration file like Nginx.
+- Supports virtual hosts with multiple ports.
 - Made server-side advanced tasks easier with CGI functionality.
 - Handles client requests asynchronously.
 - Supports the default page (index.html) and error pages.
