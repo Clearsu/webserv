@@ -47,6 +47,7 @@ Unsupported HTTP method:
 <img width="425" height="117" alt="image" src="https://github.com/user-attachments/assets/0a9cbe29-3778-4e6c-902a-088a285cef37" />
 
 Request Timeout:
+
 <img width="278" height="219" alt="image" src="https://github.com/user-attachments/assets/e4507de7-f785-4c5b-9fb1-ddadefecc472" />
 
 
