@@ -18,6 +18,7 @@
 - Handles client requests asynchronously.
 - Supports the default page (index.html) and error pages.
 - Implemented external dependencies like configurations using the Singleton Pattern.
+- Connection & Request Timeout
 ```
 
 ## How to Run
@@ -26,7 +27,7 @@ make
 ./webserv (option: [path_to_conf_file])
 ```
 
-## Request & Response Demo
+## Demo
 ### GET
 
 `curl -i http://localhost:8100/`
@@ -44,6 +45,9 @@ It supports redirection:
 Unsupported HTTP method:
 
 <img width="425" height="117" alt="image" src="https://github.com/user-attachments/assets/0a9cbe29-3778-4e6c-902a-088a285cef37" />
+
+Request Timeout:
+<img width="278" height="219" alt="image" src="https://github.com/user-attachments/assets/e4507de7-f785-4c5b-9fb1-ddadefecc472" />
 
 
 ### HEAD
