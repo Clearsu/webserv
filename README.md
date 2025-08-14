@@ -8,7 +8,7 @@
 
 - A single-threaded asynchronous web server implemented in C++ 98, mimicking Nginx's behavior.
 
-## Summary
+## Features
 
 ```
 - Developed GET, POST, DELETE, PUT, HEAD methods compliant with the HTTP 1.1 protocol.
