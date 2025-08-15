@@ -50,6 +50,10 @@ Request Timeout:
 
 <img width="278" height="219" alt="image" src="https://github.com/user-attachments/assets/e4507de7-f785-4c5b-9fb1-ddadefecc472" />
 
+Health check:
+
+<img width="468" height="117" alt="image" src="https://github.com/user-attachments/assets/b55219a9-2542-4064-9038-4fe053e7ec65" />
+
 
 ### HEAD
 
