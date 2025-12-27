@@ -23,7 +23,8 @@
 - Connection & Request Timeout
 ```
 
-## Architecture
+## Diagrams
+### High-Level Component Architecture
 ```mermaid
 flowchart LR
   A[main] --> B[ServerManager]
@@ -50,7 +51,13 @@ flowchart LR
   C --> RP
   C --> RS
 ```
+- `ServerManager` is responsible for loading configuration, initializing server sockets, setting up kqueue, and starting the event loop.
+- `Config` is implemented as a Singleton to provide global access to server, location, and MIME type settings.
+- `EventHandler` dispatches kqueue events by file descriptor type and drives the runtime behavior of the server.
+- `Client` represents a single connection and manages its state, request lifecycle, and response generation.
+- CGI requests are delegated to a dedicated CGI subsystem and handled asynchronously.
 
+### Request Handling Flow
 ```mermaid
 sequenceDiagram
   participant KQ as Kqueue
@@ -61,7 +68,7 @@ sequenceDiagram
   participant CGI as CGI
   participant RS as Response
 
-  KQ->>EH: event 발생
+  KQ->>EH: event occurs
   EH->>CL: accept or select client
   EH->>CL: receive data
   CL->>RP: parse request
@@ -77,6 +84,27 @@ sequenceDiagram
 
   EH->>CL: send response
 ```
+- All network I/O is handled using a kqueue-based event-driven model.
+- Incoming data is received when read events occur and accumulated until a complete HTTP request is parsed.
+- After parsing, the request is routed to the appropriate server and location based on configuration.
+- Requests are processed either by a standard HTTP method handler or by the CGI subsystem.
+- Responses are sent when write events are triggered, ensuring non-blocking I/O.
+
+### Client State Machine
+```mermaid
+stateDiagram-v2
+  [*] --> READY
+  READY --> READING
+  READING --> PROCESSING
+  PROCESSING --> WRITING
+  WRITING --> READY
+  WRITING --> CLOSED
+  CLOSED --> [*]
+```
+- Each client connection is managed as a finite state machine.
+- The connection transitions through states such as receiving, processing, and writing.
+- Persistent connections using keep-alive return to the ready state after a response is sent.
+- Connections are closed explicitly when required by the request or on error conditions.
 
 ## How to Run
 ```
