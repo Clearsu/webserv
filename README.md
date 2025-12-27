@@ -1,3 +1,5 @@
+
+
 ## Webserv
 
 <img width="100" height="100" style="transform: scaleX(-1);" src="tests/html/asset/index.ico/apple-icon.png">
@@ -19,6 +21,61 @@
 - Supports the default page (index.html) and error pages.
 - Implemented external dependencies like configurations using the Singleton Pattern.
 - Connection & Request Timeout
+```
+
+## Architecture
+```mermaid
+flowchart LR
+  A[main] --> B[ServerManager]
+  B --> C[Config Singleton]
+  B --> D[Kqueue Init]
+  B --> E[Server Instances]
+
+  E --> KQ[kqueue]
+  KQ --> H[EventHandler]
+
+  subgraph ClientPipeline
+    H --> CL[Client]
+    CL --> RQ[Request]
+    RQ --> RP[RequestParser]
+    CL --> MT[HTTP Method]
+    CL --> RS[Response]
+  end
+
+  subgraph CGI
+    CL --> CGIExec[CGI]
+    CGIExec --> RS
+  end
+
+  C --> RP
+  C --> RS
+```
+
+```mermaid
+sequenceDiagram
+  participant KQ as Kqueue
+  participant EH as EventHandler
+  participant CL as Client
+  participant RP as RequestParser
+  participant MT as HTTP Method
+  participant CGI as CGI
+  participant RS as Response
+
+  KQ->>EH: event 발생
+  EH->>CL: accept or select client
+  EH->>CL: receive data
+  CL->>RP: parse request
+  RP->>CL: routing info
+
+  alt CGI request
+    CL->>CGI: execute CGI
+    CGI->>RS: output
+  else normal request
+    CL->>MT: handle method
+    MT->>RS: build response
+  end
+
+  EH->>CL: send response
 ```
 
 ## How to Run
